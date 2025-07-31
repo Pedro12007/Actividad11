@@ -47,6 +47,7 @@ for i in range(propietarios_amount):
                 break
             else:
                 print('Opción inválida. Intente de nuevo.\n')
+        print()
 
 
         car_details['marca'] = brand
@@ -58,6 +59,19 @@ for i in range(propietarios_amount):
 
     propietarios[nit]=owner
 
-print(propietarios)
-
+print('Propietarios:')
+if len(propietarios) > 0:
+    for nit, datos in propietarios.items():
+        print(f'Identificación: {nit}')
+        print(f'Nombre: {datos['nombre']}')
+        print(f'Teléfono: {datos['telefono']}')
+        print('Vehículos: ')
+        for placa, datos1 in datos['vehiculos'].items():
+            impuesto = ''
+            if datos1['impuesto_pagado']:
+                impuesto = 'Sí'
+            else:
+                impuesto = 'No'
+            print(f'- Placa: {placa} | {datos1['marca']} {datos1['modelo']} ({datos1['año']}) | Impuesto: {impuesto}')
+        print()
 
