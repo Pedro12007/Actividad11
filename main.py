@@ -59,8 +59,8 @@ for i in range(propietarios_amount):
 
     propietarios[nit]=owner
 
-print('Propietarios:')
 if len(propietarios) > 0:
+    print('Propietarios:'.upper())
     for nit, datos in propietarios.items():
         print(f'Identificación: {nit}')
         print(f'Nombre: {datos['nombre']}')
@@ -75,3 +75,22 @@ if len(propietarios) > 0:
             print(f'- Placa: {placa} | {datos1['marca']} {datos1['modelo']} ({datos1['año']}) | Impuesto: {impuesto}')
         print()
 
+    identificacion = input('Buscar propietario por identificación: ')
+
+    if identificacion in propietarios:
+        print(f'Identificación: {identificacion}')
+        print(f'Nombre: {propietarios[identificacion]['nombre']}')
+        print(f'Teléfono: {propietarios[identificacion]['telefono']}')
+        print('Vehículos: ')
+        for placa, datos1 in propietarios[identificacion]['vehiculos'].items():
+            impuesto = ''
+            if datos1['impuesto_pagado']:
+                impuesto = 'Sí'
+            else:
+                impuesto = 'No'
+            print(f'- Placa: {placa} | {datos1['marca']} {datos1['modelo']} ({datos1['año']}) | Impuesto: {impuesto}')
+        print()
+    else:
+        print('No existe.\n')
+
+        
