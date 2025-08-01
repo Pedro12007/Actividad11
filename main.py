@@ -5,7 +5,7 @@ propietarios_amount = int(input('Ingrese la cantidad de propietarios a ingresar:
 
 for i in range(propietarios_amount):
     owner = {}
-    print(f'Propietario #{i+1}')
+    print(f'PROPIETARIO #{i+1}')
     while True:
         nit = input('\nIngrese el número de NIT: ')
         if not(nit in propietarios):
@@ -22,9 +22,9 @@ for i in range(propietarios_amount):
     owner['telefono'] = phone
     owner['vehiculos'] = {}
 
-    for i in range(vehicles):
+    for j in range(vehicles):
         car_details = {}
-        print(f'Carro #{i+1}')
+        print(f'Carro #{j+1}')
         while True:
             plate = input('\nIngrese el número de placa: ')
             if not(plate in owner['vehiculos']) and not(plate in placas):
@@ -93,4 +93,14 @@ if len(propietarios) > 0:
     else:
         print('No existe.\n')
 
-        
+    impuesto_pagado = 0
+    contador = 0
+    for propietario in propietarios.values():
+        for vehiculo in propietario['vehiculos'].values():
+            if vehiculo['impuesto_pagado']:
+                impuesto_pagado += 1
+                contador += 1
+            else:
+                contador += 1
+    print('\nCantidad de vehículos con impuesto de circulación pagado: ')
+    print(f'Lo han pagado: {impuesto_pagado} | No lo han pagado: {contador-impuesto_pagado}')
